@@ -27,12 +27,6 @@ import numpy as np
 from mdtraj import version
 from mdtraj.core.topology import _topology_from_subset, Topology
 from mdtraj.utils import unitcell
-# from mdtraj.utils.six import PY3  doesn't exist anymore since mdtraj 1.10.0
-# this is what it does:
-PY3 = sys.version_info[0] == 3
-if PY3:
-    basestring = str
-# is Python 2 support still neccesary?
 import mdtraj.core.element as elem
 from mdtraj.utils import in_units_of, ensure_type, import_, cast_indices
 from mdtraj.utils.six import string_types
@@ -1030,7 +1024,7 @@ class HDF5Reporter(object):
                  temperature=True, velocities=False, forces=False, atomSubset=None):
         """Create a HDF5Reporter.
         """
-        if isinstance(file, basestring):
+        if isinstance(file, str):
             self._traj_file = self.backend(file, 'w')
         elif isinstance(file, self.backend):
             self._traj_file = file
